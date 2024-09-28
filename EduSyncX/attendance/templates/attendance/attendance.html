@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center">Attendance Tracking</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Class</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for attendance in attendance_data %}
+              <tr>
+                <td>{{ attendance.student_name }}</td>
+                <td>{{ attendance.class_name }}</td>
+                <td>{{ attendance.date }}</td>
+                <td>{{ attendance.status }}</td>
+                <td>
+                  <button class="btn btn-secondary" id="edit-attendance-btn"><a href="{% url 'edit_attendance' attendance.id %}" style="color: white;">Edit</a></button>
+                  <button class="btn btn-danger" id="delete-attendance-btn"><a href="{% url 'delete_attendance' attendance.id %}" style="color: white;">Delete</a></button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="attendance-form" id="attendance-form">
+          <h3>Add New Attendance Record</h3>
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="student-name">Student Name:</label>
+              <input type="text" id="student-name" name="student_name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="class-name">Class:</label>
+              <input type="text" id="class-name" name="class_name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="date">Date:</label>
+              <input type="date" id="date" name="date" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="status">Status:</label>
+              <select id="status" name="status" class="form-control">
+                <option value="present">Present</option>
+                <option value="absent">Absent</option>
+                <option value="late">Late</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" id="save-attendance-btn">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary" id="view-all-attendance-btn"><a href="{% url 'all_attendance' %}" style="color: white;">View All Attendance Records</a></button>
+        <button class="btn btn-primary" id="back-to-dashboard-btn"><a href="{% url 'dashboard' %}" style="color: white;">Back to Dashboard</a></button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
