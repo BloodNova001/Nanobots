@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Dashboard</h1>
+      <p>Welcome to the classroom management system!</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Attendance</h5>
+          <p class="card-text">View attendance records for all students.</p>
+          <a href="{% url 'attendance' %}" class="btn btn-primary">View Attendance</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Homework</h5>
+          <p class="card-text">View and manage homework assignments for all students.</p>
+          <a href="{% url 'homework' %}" class="btn btn-primary">View Homework</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Announcements</h5>
+          <p class="card-text">View and manage announcements for all students.</p>
+          <a href="{% url 'announcements' %}" class="btn btn-primary">View Announcements</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Student Profiles</h5>
+          <p class="card-text">View and manage student profiles.</p>
+          <a href="{% url 'student_profiles' %}" class="btn btn-primary">View Student Profiles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
