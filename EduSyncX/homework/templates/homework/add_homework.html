@@ -1,0 +1,21 @@
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.assignment_name }}
+    <label for="due_date">Due Date:</label>
+    <input type="text" id="due_date" name="due_date" value="{{ form.due_date.value|date:'Y-m-d' }}">
+    {{ form.class_name }}
+    <script>
+        $(document).ready(function() {
+            $("#due_date").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        });
+    </script>
+    <button type="submit" class="btn btn-primary">Add Homework Assignment</button>
+</form>

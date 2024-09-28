@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center">Homework Assignments</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Assignment Name</th>
+              <th>Due Date</th>
+              <th>Class</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for homework in homework_data %}
+              <tr>
+                <td>{{ homework.assignment_name }}</td>
+                <td>{{ homework.due_date }}</td>
+                <td>{{ homework.class_name }}</td>
+                <td>
+                  <button class="btn btn-secondary" id="view-homework-btn"><a href="{% url 'view_homework' homework.id %}" style="color: white;">View</a></button>
+                  <button class="btn btn-primary" id="edit-homework-btn"><a href="{% url 'edit_homework' homework.id %}" style="color: white;">Edit</a></button>
+                  <button class="btn btn-danger" id="delete-homework-btn"><a href="{% url 'delete_homework' homework.id %}" style="color: white;">Delete</a></button>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="4">No homework assignments found.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary" id="add-homework-btn"><a href="{% url 'add_homework' %}" style="color: white;">Add New Homework Assignment</a></button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
